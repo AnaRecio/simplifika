@@ -8,8 +8,11 @@ import ChatBot from './components/ChatBot'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Simplifika - Transformación Digital Empresarial',
-  description: 'Soluciones de automatización inteligente y transformación digital para empresas.',
+  title: 'Simplifika',
+  description: 'Simplifica y optimiza tus procesos empresariales',
+  icons: {
+    icon: '/favicon.ico'
+  }
 }
 
 export default function RootLayout({
