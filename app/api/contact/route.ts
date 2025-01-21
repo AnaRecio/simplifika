@@ -21,19 +21,13 @@ const formSchema = z.object({
 })
 
 export async function POST(request: Request) {
-  console.log('API route hit')
-  
   try {
     const formData = await request.json()
-    console.log('Received body:', formData)
-
-    const validatedData = formSchema.parse(formData)
-    console.log('Validated data:', validatedData)
-
+    
     const { data, error } = await supabase
       .from('contact_submissions')
       .insert([{
-        ...validatedData,
+        ...formData,
         created_at: new Date().toISOString()
       }])
       .select()
@@ -41,18 +35,19 @@ export async function POST(request: Request) {
     if (error) {
       console.error('Supabase error:', error)
       return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
+        { error: 'Error al guardar el mensaje. Por favor, intenta nuevamente.' },
+        { status: 400 }
       )
     }
 
-    console.log('Success:', data)
-    return NextResponse.json({ success: true, data })
-
-  } catch (error: any) {
-    console.error('Error in API route:', error)
     return NextResponse.json(
-      { error: error.message },
+      { success: true, data },
+      { status: 200 }
+    )
+  } catch (error: any) {
+    console.error('Server error:', error)
+    return NextResponse.json(
+      { error: 'Error interno del servidor. Por favor, intenta nuevamente.' },
       { status: 500 }
     )
   }

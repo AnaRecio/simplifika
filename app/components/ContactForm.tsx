@@ -73,14 +73,16 @@ export default function ContactForm({ locale = 'es' }: ContactFormProps) {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Error al enviar el mensaje')
+        setErrorMessage(data.error || t.error)
+        setStatus('error')
+        return
       }
 
       setStatus('success')
       setFormData({ name: '', company: '', email: '', phone: '', message: '' })
     } catch (error: any) {
       console.error('Error:', error)
-      setErrorMessage(error.message)
+      setErrorMessage(t.error)
       setStatus('error')
     }
   }
