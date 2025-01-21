@@ -1,18 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-console.log('Supabase URL:', supabaseUrl?.substring(0, 10) + '...')
-console.log('Anon Key exists:', !!supabaseAnonKey)
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
-}
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 const content = {
   en: {
@@ -70,36 +57,30 @@ export default function ContactForm({ locale = 'es' }: ContactFormProps) {
     setErrorMessage('')
 
     const formPayload = {
-      name: formData.name,
-      company: formData.company,
-      email: formData.email,
-      phone: formData.phone,
-      message: formData.message,
-      language: locale.toUpperCase(),
-      created_at: new Date().toISOString()
+      ...formData,
+      language: locale.toUpperCase()
     }
 
-    console.log('Sending data:', formPayload)
-
     try {
-      const { data, error } = await supabase
-        .from('contact_submissions')
-        .insert([formPayload])
-        .select()
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formPayload)
+      })
 
-      if (error) {
-        console.error('Insert error:', error)
-        setErrorMessage('Error al guardar: ' + error.message)
-        setStatus('error')
-        return
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Error al enviar el mensaje')
       }
 
-      console.log('Insert successful:', data)
       setStatus('success')
       setFormData({ name: '', company: '', email: '', phone: '', message: '' })
     } catch (error: any) {
-      console.error('Unexpected error:', error)
-      setErrorMessage(error?.message || 'Error inesperado')
+      console.error('Error:', error)
+      setErrorMessage(error.message)
       setStatus('error')
     }
   }
