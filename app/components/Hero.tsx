@@ -38,61 +38,63 @@ const Hero = ({ locale = 'es' }: HeroProps) => {
   const isEnglish = locale === 'en'
 
   return (
-    <div className="bg-background min-h-[85vh] flex items-center px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto w-full py-16 sm:py-24 lg:py-32">
-        <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 sm:mb-8">
-            <span className="text-primary">{t.title1}</span>
-            {' '}
-            <span className="text-white">{t.title2}</span>
-            <br />
-          </h1>
-          <p className="text-xl sm:text-2xl text-gray-300 mb-10 sm:mb-12 max-w-3xl mx-auto">
-            {t.subtitle}
-          </p>
-          
-          <a
-            href={isEnglish ? '/en/contact' : '/contact'}
-            className="inline-block w-full sm:w-auto bg-primary text-white px-6 sm:px-8 py-3 rounded-md text-base sm:text-lg font-medium 
-              hover:bg-primary/90 transition-colors duration-300 mb-10 sm:mb-14"
-          >
-            {t.cta}
-          </a>
+    <section className="bg-background">
+      <div className="bg-background min-h-[85vh] flex items-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto w-full py-16 sm:py-24 lg:py-32">
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 sm:mb-8">
+              <span className="text-primary">{t.title1}</span>
+              {' '}
+              <span className="text-white">{t.title2}</span>
+              <br />
+            </h1>
+            <p className="text-xl sm:text-2xl text-gray-300 mb-10 sm:mb-12 max-w-3xl mx-auto">
+              {t.subtitle}
+            </p>
+            
+            <a
+              href={isEnglish ? '/en/contact' : '/contact'}
+              className="inline-block w-full sm:w-auto bg-primary text-white px-6 sm:px-8 py-3 rounded-md text-base sm:text-lg font-medium 
+                hover:bg-primary/90 transition-colors duration-300 mb-10 sm:mb-14"
+            >
+              {t.cta}
+            </a>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {t.features.map((feature, index) => (
-              <div 
-                key={index} 
-                className="flex items-start gap-4 bg-[#0B0F13]/40 backdrop-blur-sm rounded-lg p-6 text-left"
-              >
-                <div className="text-primary mt-1">
-                  <svg 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path 
-                      d="M20 6L9 17L4 12" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {t.features.map((feature, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-start gap-4 bg-[#0B0F13]/40 backdrop-blur-sm rounded-lg p-6 text-left"
+                >
+                  <div className="text-primary mt-1">
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path 
+                        d="M20 6L9 17L4 12" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-white text-lg font-medium">
+                      {feature}
+                    </h3>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-white text-lg font-medium">
-                    {feature}
-                  </h3>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

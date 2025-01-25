@@ -19,7 +19,7 @@ export default function Footer({ locale = 'es' }: FooterProps) {
   const t = content[locale as keyof typeof content]
   
   return (
-    <footer className="bg-background py-6">
+    <footer className="bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex justify-center space-x-6 mb-4">
           <a 
@@ -32,7 +32,7 @@ export default function Footer({ locale = 'es' }: FooterProps) {
             <Twitter className="h-6 w-6" />
           </a>
           <a 
-            href="https://linkedin.com/company/simplifika" 
+            href="https://www.linkedin.com/company/simplifika-tech/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-primary transition-colors duration-300"
@@ -41,7 +41,7 @@ export default function Footer({ locale = 'es' }: FooterProps) {
             <Linkedin className="h-6 w-6" />
           </a>
           <a 
-            href="https://instagram.com/simplifika" 
+            href="https://www.instagram.com/simplifikatech/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-primary transition-colors duration-300"
