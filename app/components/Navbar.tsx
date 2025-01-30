@@ -39,7 +39,7 @@ export default function Navbar({ locale = 'es' }: NavbarProps) {
   }
 
   return (
-    <nav className="bg-background">
+    <nav className="fixed w-full bg-background">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
